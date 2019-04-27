@@ -3,7 +3,7 @@
  */
 import uaParser from 'ua-parser-js' // 客户端浏览器信息解析模块
 import md5 from 'js-md5'
-import * as constants from '../AppConstants'
+import * as constants from '@/AppConstants'
 import storage from './storage'
 
 /**

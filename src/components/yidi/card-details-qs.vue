@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import utils from '../../commons/utils'
+import utils from '@/commons/utils'
 
 export default {
   components: {},
