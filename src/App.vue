@@ -6,13 +6,11 @@
       v-bind:test="test"
       @tel="telMethod"
     />
-    <card-details-qs></card-details-qs>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import CardDetailsQs from './components/yidi/card-details-qs'
 
 export default {
   data: function () {
@@ -22,7 +20,6 @@ export default {
   },
   name: 'app',
   components: {
-    CardDetailsQs,
     HelloWorld
   },
   methods: {
