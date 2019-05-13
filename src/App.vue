@@ -1,34 +1,64 @@
 <template>
   <div id="app">
-    <img width="350px" height="300px" alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld
-      msg="Welcome to Your Vue.js App"
-      v-bind:test="test"
-      @tel="telMethod"
-    />
-    <paper-info></paper-info>
+    <b-button @click="addOption()" variant="success">添加选择题</b-button>
+    <b-button @click="addBlank()" variant="success">添加填空题</b-button>
+    <option-topic v-for="item in optionItems" :optionItem="item" :key="'option_'+item.count" v-on:delThisOption="delThisOption"></option-topic>
+    <blank-topic v-for="item in blankItems" :blankItem="item" :key="'blank_'+item.count" v-on:delThisBlank="delThisBlank"></blank-topic>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import PaperInfo from './components/paperInfo/paperInfo'
+import OptionTopic from './components/paperInfo/OptionTopic'
+import BlankTopic from './components/paperInfo/BlankTopic'
 
 export default {
   data: function () {
     return {
-      test: 0
+      optionCount: 0,
+      blankCount: 0,
+      optionItems: [],
+      blankItems: []
     }
   },
   name: 'app',
   components: {
-    HelloWorld,
-    PaperInfo
+    OptionTopic,
+    BlankTopic
   },
   methods: {
-    telMethod: function (msg) {
-      window.console.log('次数为' + msg)
-      this.test++
+    addOption: function () {
+      this.optionItems.push({
+        title: '',
+        count: this.optionCount++,
+        optionSize: 4,
+        optionChoiceList: [{
+          num: 'A',
+          text: ''
+        }, {
+          num: 'B',
+          text: ''
+        }, {
+          num: 'C',
+          text: ''
+        }, {
+          num: 'D',
+          text: ''
+        }]
+      })
+    },
+    addBlank: function () {
+      this.blankItems.push({
+        title: '',
+        count: this.blankCount++
+      })
+    },
+    delThisOption: function (count) {
+      this.optionItems.splice(count, 1)
+      this.optionCount--
+    },
+    delThisBlank: function (count) {
+      this.blankItems.splice(count, 1)
+      this.blankCount--
     }
   }
 }
