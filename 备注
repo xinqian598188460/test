@@ -1,0 +1,7 @@
+1、npm config set registry https://registry.npm.taobao.org
+
+2、brew search nginx
+
+3、idea 安装nginx support
+
+4、vim  nginx.conf(更改root路径)

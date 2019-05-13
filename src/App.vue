@@ -6,11 +6,13 @@
       v-bind:test="test"
       @tel="telMethod"
     />
+    <paper-info></paper-info>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import PaperInfo from './components/paperInfo/paperInfo'
 
 export default {
   data: function () {
@@ -20,7 +22,8 @@ export default {
   },
   name: 'app',
   components: {
-    HelloWorld
+    HelloWorld,
+    PaperInfo
   },
   methods: {
     telMethod: function (msg) {
