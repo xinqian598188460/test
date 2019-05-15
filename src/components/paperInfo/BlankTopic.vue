@@ -1,14 +1,17 @@
 <template>
-  <div>
+  <div class="w-50 m-auto">
     <b-form-group
-      label="题目标题"
       :invalid-feedback="invalidFeedback"
       :state="titleState"
+      class="mt-3"
     >
-      <b-form-input v-model="blankItem.title" :state="titleState" trim class="w-50 m-auto"></b-form-input>
+      <b-input-group prepend="填空题题目:">
+        <b-form-input v-model="blankItem.title" :state="titleState" trim></b-form-input>
+        <b-input-group-append>
+          <b-button @click="del" class="ml-1">删除本题</b-button>
+        </b-input-group-append>
+      </b-input-group>
     </b-form-group>
-    <b-button @click="del">X</b-button>
-    <b-form-input size="sm" v-model="blankItem.text" class="w-50 m-auto"></b-form-input>
   </div>
 </template>
 
@@ -22,7 +25,7 @@ export default {
       if (this.blankItem.title.length > 0) {
         return ''
       } else {
-        return '请输入题目标题！'
+        return '请输入填空题题目！'
       }
     }
   },

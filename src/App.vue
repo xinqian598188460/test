@@ -2,8 +2,8 @@
   <div id="app">
     <b-button @click="addOption()" variant="success">添加选择题</b-button>
     <b-button @click="addBlank()" variant="success">添加填空题</b-button>
-    <option-topic v-for="item in optionItems" :optionItem="item" :key="'option_'+item.count" v-on:delThisOption="delThisOption"></option-topic>
-    <blank-topic v-for="item in blankItems" :blankItem="item" :key="'blank_'+item.count" v-on:delThisBlank="delThisBlank"></blank-topic>
+    <option-topic v-for="item in optionTopicItems" :optionItem="item" :key="'option_'+item.count" v-on:delThisOption="delThisOption"></option-topic>
+    <blank-topic v-for="item in blankTopicItems" :blankItem="item" :key="'blank_'+item.count" v-on:delThisBlank="delThisBlank"></blank-topic>
   </div>
 </template>
 
@@ -14,10 +14,10 @@ import BlankTopic from './components/paperInfo/BlankTopic'
 export default {
   data: function () {
     return {
-      optionCount: 0,
-      blankCount: 0,
-      optionItems: [],
-      blankItems: []
+      optionTopicCount: 0,
+      blankTopicCount: 0,
+      optionTopicItems: [],
+      blankTopicItems: []
     }
   },
   name: 'app',
@@ -27,9 +27,9 @@ export default {
   },
   methods: {
     addOption: function () {
-      this.optionItems.push({
+      this.optionTopicItems.push({
         title: '',
-        count: this.optionCount++,
+        count: this.optionTopicCount++,
         optionSize: 4,
         optionChoiceList: [{
           num: 'A',
@@ -47,18 +47,18 @@ export default {
       })
     },
     addBlank: function () {
-      this.blankItems.push({
+      this.blankTopicItems.push({
         title: '',
-        count: this.blankCount++
+        count: this.blankTopicCount++
       })
     },
     delThisOption: function (count) {
-      this.optionItems.splice(count, 1)
-      this.optionCount--
+      this.optionTopicItems.splice(count, 1)
+      this.optionTopicCount--
     },
     delThisBlank: function (count) {
-      this.blankItems.splice(count, 1)
-      this.blankCount--
+      this.blankTopicItems.splice(count, 1)
+      this.blankTopicCount--
     }
   }
 }
