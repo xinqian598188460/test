@@ -30,6 +30,7 @@ export default {
       this.optionTopicItems.push({
         title: '',
         count: this.optionTopicCount++,
+        type: '单选题',
         optionSize: 4,
         optionChoiceList: [{
           num: 'A',
@@ -53,10 +54,18 @@ export default {
       })
     },
     delThisOption: function (count) {
+      if ((this.optionTopicItems.length + this.blankTopicItems.length) <= 1) {
+        alert('一张问卷至少有一道题！')
+        return
+      }
       this.optionTopicItems.splice(count, 1)
       this.optionTopicCount--
     },
     delThisBlank: function (count) {
+      if ((this.optionTopicItems.length + this.blankTopicItems.length) <= 1) {
+        alert('一张问卷至少有一道题！')
+        return
+      }
       this.blankTopicItems.splice(count, 1)
       this.blankTopicCount--
     }

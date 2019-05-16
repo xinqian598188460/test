@@ -5,18 +5,22 @@
       :state="titleState"
       class="mt-3"
     >
-      <b-input-group prepend="选择题题目:">
+      <b-input-group :prepend="optionItem.type+'标题：'">
         <b-form-input v-model="optionItem.title" :state="titleState" trim></b-form-input>
         <b-input-group-append>
-          <b-button @click="del" class="ml-1">删除本题</b-button>
-          <b-button @click="addOpt" class="ml-1">添加选项</b-button>
+          <b-button @click="addOpt" class="ml-1" variant="info">添加选项</b-button>
+          <b-dropdown text="切换类型" class="ml-1" slot="append" variant="info">
+            <b-dropdown-item v-show="optionItem.type != '单选题'" @click="optionItem.type = '单选题'">单选题</b-dropdown-item>
+            <b-dropdown-item v-show="optionItem.type != '多选题'" @click="optionItem.type = '多选题'">多选题</b-dropdown-item>
+          </b-dropdown>
+          <b-button @click="del" class="ml-1" variant="danger">删除本题</b-button>
         </b-input-group-append>
       </b-input-group>
     </b-form-group>
     <b-input-group :prepend="'选项'+option.num+':'" class="mt-3" v-for="(option,index) in optionItem.optionChoiceList" :key="option.num">
       <b-form-input :id="`type-${option.num}`" v-model="option.text"></b-form-input>
       <b-input-group-append>
-        <b-button variant="info" @click="delOpt(index)">删除该选项</b-button>
+        <b-button v-if="index === (optionItem.optionChoiceList.length - 1)" @click="delOpt(index)" variant="info">删除本选项</b-button>
       </b-input-group-append>
     </b-input-group>
   </div>
@@ -69,6 +73,14 @@ export default {
       this.optionItem.optionSize++
     },
     delOpt (index) {
+      if (this.optionItem.type === '多选题' && this.optionItem.optionChoiceList.length <= 2) {
+        alert('多选题至少有两个选项！')
+        return
+      }
+      if (this.optionItem.type === '单选题' && this.optionItem.optionChoiceList.length <= 1) {
+        alert('单选题至少有一个选项！')
+        return
+      }
       this.optionItem.optionChoiceList.splice(index, 1)
       this.optionItem.optionSize--
     }
