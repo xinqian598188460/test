@@ -1,32 +1,21 @@
 /**
- * Created by yangxin on 2016/11/23.
+ * Created by xinqian on 2019/05/18.
  */
+import paperInfo from '../components/paperInfo/PaperInfo'
+import echarts from '../components/echarts/echarts'
+
 let routes = [
   {
-    path: '/question',
-    component: resolve => {
-      require(['pages/question'], resolve)
-    },
+    path: '/paper',
+    component: paperInfo,
     meta: {
-      title: '问卷'
+      title: '添加问卷'
     }
-  },
-  {
-    path: '/card-details',
-    component: resolve => {
-      require(['pages/card-details'], resolve)
-    },
+  }, {
+    path: '/echarts',
+    component: echarts,
     meta: {
-      title: '名片'
-    }
-  },
-  {
-    path: '/card-details-qs',
-    component: resolve => {
-      require(['pages/card-details-qs'], resolve)
-    },
-    meta: {
-      title: '名片详情'
+      title: '分析'
     }
   }
 ]

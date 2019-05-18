@@ -1,5 +1,6 @@
 import Vue from 'vue'
-import App from './App.vue'
+import index from './index.vue'
+import vueRouter from './router/index'
 import axios from 'axios'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -12,5 +13,5 @@ Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App)
+  render: h => h(index), router: vueRouter
 }).$mount('#app')

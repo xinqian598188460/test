@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <b-button @click="addOption()" variant="success">添加选择题</b-button>
     <b-button @click="addBlank()" variant="success">添加填空题</b-button>
     <option-topic v-for="item in optionTopicItems" :optionItem="item" :key="'option_'+item.count" v-on:delThisOption="delThisOption"></option-topic>
@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import OptionTopic from './components/paperInfo/OptionTopic'
-import BlankTopic from './components/paperInfo/BlankTopic'
+import OptionTopic from './OptionTopic'
+import BlankTopic from './BlankTopic'
 
 export default {
   data: function () {
@@ -20,7 +20,7 @@ export default {
       blankTopicItems: []
     }
   },
-  name: 'app',
+  name: 'PaperInfo',
   components: {
     OptionTopic,
     BlankTopic
