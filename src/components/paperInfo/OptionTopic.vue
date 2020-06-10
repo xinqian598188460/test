@@ -9,10 +9,7 @@
         <b-form-input v-model="optionItem.title" :state="titleState" trim></b-form-input>
         <b-input-group-append>
           <b-button @click="addOpt" class="ml-1" variant="info">添加选项</b-button>
-          <b-dropdown text="切换类型" class="ml-1" slot="append" variant="info">
-            <b-dropdown-item v-show="optionItem.type != '单选题'" @click="optionItem.type = '单选题'">单选题</b-dropdown-item>
-            <b-dropdown-item v-show="optionItem.type != '多选题'" @click="optionItem.type = '多选题'">多选题</b-dropdown-item>
-          </b-dropdown>
+          <b-button @click="changeTopicType" class="ml-1" variant="info">切换类型</b-button>
           <b-button @click="del" class="ml-1" variant="danger">删除本题</b-button>
         </b-input-group-append>
       </b-input-group>
@@ -71,6 +68,16 @@ export default {
         text: ''
       })
       this.optionItem.optionSize++
+    },
+    changeTopicType(){
+      if(this.optionItem.type === '单选题'){
+        this.optionItem.type = '多选题';
+      }else{
+        this.optionItem.type = '单选题';
+      }
+      if( this.optionItem.optionChoiceList.length <= 1){
+        this.addOpt();
+      }
     },
     delOpt (index) {
       if (this.optionItem.type === '多选题' && this.optionItem.optionChoiceList.length <= 2) {
